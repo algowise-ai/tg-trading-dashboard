@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <base href="https://algowise-ai.github.io/tg-trading-dashboard/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>頻道 · TG Trading · FX/XAU</title>
+  <link rel="stylesheet" href="static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span>TG Trading · FX/XAU</span>
+    </div>
+    <nav>
+      <a href="index.html" class="">總覽 Dashboard</a>
+      <a href="demo.html" class="">真倉 Demo</a>
+      <a href="paper.html" class="">紙上基金</a>
+      <a href="tracker.html" class="">Tracker</a>
+      <a href="channels.html" class="active">頻道 Channels</a>
+      <a href="tips.html" class="">訊號 Tips</a>
+      <a href="api/stats.json" class="muted">API</a>
+    </nav>
+  </header>
+  <main class="container">
+    
+<h1>鎖定頻道 Locked channels</h1>
+<p class="lede muted">Phase 1 鎖定 9 個頻道（來自 <code>data/fx_locked_channels.json</code>）。</p>
+<section class="panel">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th><th>頻道</th><th>Tier</th><th>Watch</th><th>Active</th><th>Tips（全部軌道）</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td class="muted">1</td>
+        <td><strong>TWP VIP 🏆</strong></td>
+        <td>
+          <span class="tag">優先</span>
+          
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>300</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">2</td>
+        <td><strong>TWP GOLD 📈</strong></td>
+        <td>
+          <span class="tag">中</span>
+          
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>117</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">3</td>
+        <td><strong>GOLD Snipers</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>436</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">4</td>
+        <td><strong>GARY GOLD TRADER</strong></td>
+        <td>
+          <span class="tag">優先</span>
+          
+        </td>
+        <td><span class="amber">yes</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>974</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">7</td>
+        <td><strong>𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</strong></td>
+        <td>
+          <span class="tag">優先</span>
+          
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>869</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">8</td>
+        <td><strong>SureShot GOLD</strong></td>
+        <td>
+          <span class="tag">中</span>
+          
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>395</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">9</td>
+        <td><strong>FX PROFIT SIGNAL (FREE)</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>594</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">10</td>
+        <td><strong>TFXC PREMIUM</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>2527</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">11</td>
+        <td><strong>Sureshot FX 🎯</strong></td>
+        <td>
+          <span class="tag">優先</span>
+          
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>343</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">12</td>
+        <td><strong>Market Makers</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>477</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">13</td>
+        <td><strong>Quartz Academy 💠</strong></td>
+        <td>
+          <span class="tag">優先</span>
+          
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>749</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">14</td>
+        <td><strong>Octa Analytics</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>184</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">15</td>
+        <td><strong>TFXC SIGNALS</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>326</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16</td>
+        <td><strong>TFXC SIGNALS UK 🇬🇧 🔥</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>325</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">17</td>
+        <td><strong>AamirFx_Pro ( #Father_Of_Gold )</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>143</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">18</td>
+        <td><strong>Trading Central FX | Forex Signals 🌍</strong></td>
+        <td>
+          <span class="tag">中</span>
+          
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>320</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">19</td>
+        <td><strong>School Of Trades</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>258</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">22</td>
+        <td><strong>Ben, Gold Trader</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>378</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">24</td>
+        <td><strong>GTMoFx 🤴🏽 (goldtradermo)</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>419</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">25</td>
+        <td><strong>GOLD SIGNALS SCALPING ® GSS</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>263</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">26</td>
+        <td><strong>🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>347</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">28</td>
+        <td><strong>Trade with Pat 🆓 (FRN)</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>53</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">29</td>
+        <td><strong>Liquidity Trading ™️</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>70</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">31</td>
+        <td><strong>VANTAGE FOREX SIGNALS OFFICIAL</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>1052</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">32</td>
+        <td><strong>🌐 𝗚𝗼𝗹𝗱 | fσrεx rεsεarch 💱⚜️</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>39</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">36</td>
+        <td><strong>GFR ANALYSIS FREE</strong></td>
+        <td>
+          <span class="tag">優先</span>
+          
+        </td>
+        <td><span class="amber">yes</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>1146</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">37</td>
+        <td><strong>Traders Gold Empire Forex</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>738</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">38</td>
+        <td><strong>DEN GOLD MASTER</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>696</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">39</td>
+        <td><strong>Gold Snipers Forex Free</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>245</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">40</td>
+        <td><strong>Sureshot INDICES ⚡️</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>340</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">44</td>
+        <td><strong>✨WFR PREMIUM ( lifetime + Monthly)✨</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>680</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">45</td>
+        <td><strong>Turbo Traders International 🌎</strong></td>
+        <td>
+          <span class="tag">low</span>
+        </td>
+        <td><span class="muted">—</span></td>
+        <td><span class="pos">yes</span></td>
+        <td>27</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</section>
+
+  </main>
+  <footer class="footer">
+    Phase 1 · Backtest ≠ Live demo · 唔會混統計 · SQLite · GitHub Pages snapshot · paper only · 無實盤下單
+  </footer>
+  <script src="static/sort-table.js" defer></script>
+</body>
+</html>

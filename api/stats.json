@@ -1,0 +1,351 @@
+{
+  "backtest": {
+    "track_kind": "backtest",
+    "total_tips": 14839,
+    "hit_tp": 8415,
+    "hit_sl": 4710,
+    "open_pending": 1514,
+    "closed": 68,
+    "cancelled": 132,
+    "total_pips": 455569.6,
+    "win_rate": 64.1,
+    "settled": 13125,
+    "example_count": 3
+  },
+  "live_demo": {
+    "track_kind": "live_demo",
+    "total_tips": 1065,
+    "hit_tp": 624,
+    "hit_sl": 373,
+    "open_pending": 64,
+    "closed": 0,
+    "cancelled": 4,
+    "total_pips": 3651.6,
+    "win_rate": 62.6,
+    "settled": 997,
+    "example_count": 0
+  },
+  "channels": [
+    {
+      "id": 1,
+      "n": 1,
+      "title": "TWP VIP 🏆",
+      "tier": "priority",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 300
+    },
+    {
+      "id": 2,
+      "n": 2,
+      "title": "TWP GOLD 📈",
+      "tier": "medium",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 117
+    },
+    {
+      "id": 12,
+      "n": 3,
+      "title": "GOLD Snipers",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 436
+    },
+    {
+      "id": 3,
+      "n": 4,
+      "title": "GARY GOLD TRADER",
+      "tier": "priority",
+      "watch_flag": 1,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 974
+    },
+    {
+      "id": 4,
+      "n": 7,
+      "title": "𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖",
+      "tier": "priority",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 869
+    },
+    {
+      "id": 5,
+      "n": 8,
+      "title": "SureShot GOLD",
+      "tier": "medium",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 395
+    },
+    {
+      "id": 18,
+      "n": 9,
+      "title": "FX PROFIT SIGNAL (FREE)",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 594
+    },
+    {
+      "id": 19,
+      "n": 10,
+      "title": "TFXC PREMIUM",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 2527
+    },
+    {
+      "id": 6,
+      "n": 11,
+      "title": "Sureshot FX 🎯",
+      "tier": "priority",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 343
+    },
+    {
+      "id": 21,
+      "n": 12,
+      "title": "Market Makers",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 477
+    },
+    {
+      "id": 7,
+      "n": 13,
+      "title": "Quartz Academy 💠",
+      "tier": "priority",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 749
+    },
+    {
+      "id": 23,
+      "n": 14,
+      "title": "Octa Analytics",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 184
+    },
+    {
+      "id": 24,
+      "n": 15,
+      "title": "TFXC SIGNALS",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 326
+    },
+    {
+      "id": 25,
+      "n": 16,
+      "title": "TFXC SIGNALS UK 🇬🇧 🔥",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 325
+    },
+    {
+      "id": 26,
+      "n": 17,
+      "title": "AamirFx_Pro ( #Father_Of_Gold )",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 143
+    },
+    {
+      "id": 8,
+      "n": 18,
+      "title": "Trading Central FX | Forex Signals 🌍",
+      "tier": "medium",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 320
+    },
+    {
+      "id": 28,
+      "n": 19,
+      "title": "School Of Trades",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 258
+    },
+    {
+      "id": 31,
+      "n": 22,
+      "title": "Ben, Gold Trader",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 378
+    },
+    {
+      "id": 33,
+      "n": 24,
+      "title": "GTMoFx 🤴🏽 (goldtradermo)",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 419
+    },
+    {
+      "id": 34,
+      "n": 25,
+      "title": "GOLD SIGNALS SCALPING ® GSS",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 263
+    },
+    {
+      "id": 35,
+      "n": 26,
+      "title": "🌐 wσrld fσrєх rєѕєαrch 💱 ⚜",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 347
+    },
+    {
+      "id": 37,
+      "n": 28,
+      "title": "Trade with Pat 🆓 (FRN)",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 53
+    },
+    {
+      "id": 38,
+      "n": 29,
+      "title": "Liquidity Trading ™️",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 70
+    },
+    {
+      "id": 40,
+      "n": 31,
+      "title": "VANTAGE FOREX SIGNALS OFFICIAL",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 1052
+    },
+    {
+      "id": 41,
+      "n": 32,
+      "title": "🌐 𝗚𝗼𝗹𝗱 | fσrεx rεsεarch 💱⚜️",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 39
+    },
+    {
+      "id": 9,
+      "n": 36,
+      "title": "GFR ANALYSIS FREE",
+      "tier": "priority",
+      "watch_flag": 1,
+      "active": 1,
+      "created_at": "2026-09-23 04:45:43",
+      "tip_count": 1146
+    },
+    {
+      "id": 46,
+      "n": 37,
+      "title": "Traders Gold Empire Forex",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 738
+    },
+    {
+      "id": 47,
+      "n": 38,
+      "title": "DEN GOLD MASTER",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 696
+    },
+    {
+      "id": 48,
+      "n": 39,
+      "title": "Gold Snipers Forex Free",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 245
+    },
+    {
+      "id": 49,
+      "n": 40,
+      "title": "Sureshot INDICES ⚡️",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-28 04:43:43",
+      "tip_count": 340
+    },
+    {
+      "id": 7339,
+      "n": 44,
+      "title": "✨WFR PREMIUM ( lifetime + Monthly)✨",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-30 20:03:23",
+      "tip_count": 680
+    },
+    {
+      "id": 7340,
+      "n": 45,
+      "title": "Turbo Traders International 🌎",
+      "tier": "low",
+      "watch_flag": 0,
+      "active": 1,
+      "created_at": "2026-09-30 20:03:23",
+      "tip_count": 27
+    }
+  ],
+  "note": "Backtest and Live demo are never mixed."
+}
