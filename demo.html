@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <base href="https://algowise-ai.github.io/tg-trading-dashboard/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>真倉 Demo · TG Trading · FX/XAU</title>
+  <link rel="stylesheet" href="static/style.css" />
+<!-- algowise-theme-head -->
+<script>
+(function(){try{var m=localStorage.getItem("algowise-theme")||"system";
+document.documentElement.setAttribute("data-theme",m);
+var dark=window.matchMedia("(prefers-color-scheme: dark)").matches;
+var r=m==="light"?"light":m==="dark"?"dark":(dark?"dark":"light");
+document.documentElement.setAttribute("data-theme-resolved",r);
+}catch(e){}})();
+</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span>TG Trading · FX/XAU</span>
+    </div>
+    <nav>
+      <a href="index.html" class="">總覽 Dashboard</a>
+      <a href="demo.html" class="active">真倉 Demo</a>
+      <a href="paper.html" class="">紙上基金</a>
+      <a href="tracker.html" class="">Tracker</a>
+      <a href="channels.html" class="">頻道 Channels</a>
+      <a href="tips.html" class="">訊號 Tips</a>
+      <a href="api/stats.json" class="muted">API</a>
+    </nav>
+  </header>
+  <main class="container">
+    
+<h1>真倉 Demo · demo_10k_01pct</h1>
+<div class="note" style="margin-top:0;margin-bottom:0.8rem">
+  <b>Phase 1 紙上</b>（唔落真錢）。US$10,000 · 每單風險 0.1% · 真實 fill＋成本＋本地價結算 TP/SL（唔信頻道報喜）。
+  <b>唔影響主線 P-trail</b>（$5k／0.5%／#3+#25）。
+  更新 2026-10-31 22:52:44 HKT。
+  <br>只有組合頻道計入 US$10k 權益；觀察 only 係獨立 sleeve 對照，唔係 copy 建議。
+  <span class="muted"> · <a href="api/demo_10k.json">JSON</a> · <a href="demo.html">刷新</a></span>
+</div>
+
+
+
+<div class="cards" id="demo-cards">
+  <div class="card"><div class="label">戶口</div><div class="value" style="font-size:1.1rem">demo_10k_01pct</div><div class="sub">Demo 真倉 paper — US$10k @ 0.1%</div></div>
+  <div class="card"><div class="label">本金 US$</div><div class="value neg">9,952.33</div><div class="sub">起始 $10,000 · -0.48%</div></div>
+  <div class="card"><div class="label">累計 R</div><div class="value neg">-4.76R</div><div class="sub">期望 -0.070R／單</div></div>
+  <div class="card"><div class="label">贏/輸</div><div class="value">46/22</div><div class="sub">taken 68 · 勝率 67.6%</div></div>
+  <div class="card"><div class="label">風險</div><div class="value">0.1%</div><div class="sub">每單 · max DD 0.64%</div></div>
+  <div class="card"><div class="label">未結</div><div class="value">0</div><div class="sub">skip {&#39;entry_deviation&#39;: 2, &#39;gold_bucket&#39;: 1}</div></div>
+</div>
+
+<div class="panel section" style="margin-bottom:1.25rem">
+  <h2>組合頻道（計入 $10k 權益）</h2>
+  <div class="table-wrap"><table class="table compact dense">
+    <thead><tr>
+      <th>#</th><th>頻道</th><th>角色</th><th>出場</th><th class="num">單</th><th class="num">R</th><th class="num">PnL US$</th><th class="num">max DD R</th><th>備註</th>
+    </tr></thead>
+    <tbody>
+    
+    <tr>
+      <td class="nowrap">3</td>
+      <td class="wrap">GOLD Snipers</td>
+      <td class="nowrap"><span class="status won">copy</span></td>
+      <td class="nowrap">trail</td>
+      <td class="num">31</td>
+      <td class="num neg">-2.01</td>
+      <td class="num neg">-20.18</td>
+      <td class="num">4.69</td>
+      <td class="small wrap muted">BT R_fill_net +8.7; mainline partner; trail exit</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap">25</td>
+      <td class="wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap"><span class="status won">copy</span></td>
+      <td class="nowrap">trail</td>
+      <td class="num">30</td>
+      <td class="num neg">-2.63</td>
+      <td class="num neg">-26.28</td>
+      <td class="num">3.94</td>
+      <td class="small wrap muted">BT R_fill_net +3.9; mainline partner; trail exit</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap">45</td>
+      <td class="wrap">Turbo Traders International 🌎</td>
+      <td class="nowrap"><span class="status won">copy</span></td>
+      <td class="nowrap">tp1</td>
+      <td class="num">7</td>
+      <td class="num neg">-0.12</td>
+      <td class="num neg">-1.21</td>
+      <td class="num">1.03</td>
+      <td class="small wrap muted">Only other +BT fill_net with +Live; small sample — weak conviction</td>
+    </tr>
+    
+    </tbody>
+  </table></div>
+</div>
+
+<div class="panel section" style="margin-bottom:1.25rem">
+  <h2>觀察 only（唔計入組合權益 · 弱／唔建議 copy）</h2>
+  
+  <div class="table-wrap"><table class="table compact dense">
+    <thead><tr>
+      <th>#</th><th>頻道</th><th class="num">equity</th><th class="num">ret%</th><th class="num">W-L</th><th class="num">sum R</th><th>備註</th>
+    </tr></thead>
+    <tbody>
+    
+    <tr>
+      <td class="nowrap">14</td>
+      <td class="wrap">Octa Analytics</td>
+      <td class="num pos">10,073.70</td>
+      <td class="num pos">+0.74</td>
+      <td class="num">15/7</td>
+      <td class="num pos">+7.38</td>
+      <td class="small wrap muted">Live best R_fill_net but BT −2.9; watch divergence — NOT recommended to copy yet</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap">11</td>
+      <td class="wrap">Sureshot FX 🎯</td>
+      <td class="num neg">9,919.99</td>
+      <td class="num neg">-0.80</td>
+      <td class="num">5/17</td>
+      <td class="num neg">-8.01</td>
+      <td class="small wrap muted">Best BT (+16) but Live structurally bad (−9R); observe only — do NOT copy</td>
+    </tr>
+    
+    </tbody>
+  </table></div>
+  
+</div>
+
+<div class="panel section" style="margin-bottom:1.25rem">
+  <h2>最近組合訊號（價位結算）</h2>
+  
+  <div class="table-wrap"><table class="table compact dense">
+    <thead><tr>
+      <th>時間</th><th>#</th><th>頻道</th><th>品種</th><th>方向</th><th>出場</th><th>結果</th><th class="num">dev</th><th class="num">R_net</th><th>決策</th>
+    </tr></thead>
+    <tbody>
+    
+    <tr>
+      <td class="nowrap small">2026-10-30 20:14</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.02</td>
+      <td class="num pos">+0.12</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-30 19:02</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status lost">loss</span></td>
+      <td class="num">0.02</td>
+      <td class="num neg">-1.03</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-30 18:14</td>
+      <td class="nowrap">45</td>
+      <td class="small wrap">Turbo Traders International 🌎</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status lost">loss</span></td>
+      <td class="num">-0.00</td>
+      <td class="num neg">-1.03</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-30 17:43</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.23</td>
+      <td class="num neg">-0.03</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-30 10:54</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.12</td>
+      <td class="num neg">-0.01</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-29 12:26</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status open">not_actionable</span></td>
+      <td class="num">-</td>
+      <td class="num ">-</td>
+      <td class="small">-</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-28 19:24</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.26</td>
+      <td class="num pos">+0.36</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-28 17:36</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.13</td>
+      <td class="num pos">+0.01</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-27 18:03</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.06</td>
+      <td class="num pos">+0.01</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-27 17:25</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status lost">loss</span></td>
+      <td class="num">0.00</td>
+      <td class="num neg">-1.02</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-26 21:36</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.12</td>
+      <td class="num neg">-0.02</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-26 21:35</td>
+      <td class="nowrap">45</td>
+      <td class="small wrap">Turbo Traders International 🌎</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.13</td>
+      <td class="num pos">+0.10</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-26 17:37</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.00</td>
+      <td class="num pos">+0.44</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-26 13:23</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.10</td>
+      <td class="num pos">+0.02</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-23 18:21</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.02</td>
+      <td class="num pos">+0.08</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-22 20:48</td>
+      <td class="nowrap">45</td>
+      <td class="small wrap">Turbo Traders International 🌎</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status open">not_actionable</span></td>
+      <td class="num">-</td>
+      <td class="num ">-</td>
+      <td class="small">-</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-22 19:34</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status lost">loss</span></td>
+      <td class="num">0.00</td>
+      <td class="num neg">-1.02</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-22 18:59</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.01</td>
+      <td class="num pos">+0.09</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-22 13:42</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.14</td>
+      <td class="num pos">+0.11</td>
+      <td class="small">skip:gold_bucket</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-21 22:11</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.00</td>
+      <td class="num pos">+0.12</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-21 22:09</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status open">not_filled</span></td>
+      <td class="num">-</td>
+      <td class="num ">-</td>
+      <td class="small">-</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-21 18:42</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.13</td>
+      <td class="num neg">-0.01</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-20 21:30</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">-0.11</td>
+      <td class="num pos">+0.55</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-20 18:00</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.00</td>
+      <td class="num pos">+0.12</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-20 17:43</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.02</td>
+      <td class="num pos">+0.12</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-19 21:45</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status open">not_actionable</span></td>
+      <td class="num">-</td>
+      <td class="num ">-</td>
+      <td class="small">-</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-19 18:06</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.06</td>
+      <td class="num neg">-0.00</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-19 09:20</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">-0.05</td>
+      <td class="num pos">+0.07</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-16 19:38</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.12</td>
+      <td class="num pos">+0.07</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-16 17:55</td>
+      <td class="nowrap">45</td>
+      <td class="small wrap">Turbo Traders International 🌎</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.10</td>
+      <td class="num pos">+0.13</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-16 10:41</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.08</td>
+      <td class="num pos">+0.06</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-15 19:52</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.07</td>
+      <td class="num pos">+0.10</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-15 09:26</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.06</td>
+      <td class="num pos">+0.11</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-14 17:30</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">-0.10</td>
+      <td class="num pos">+0.04</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-14 10:06</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">-0.16</td>
+      <td class="num pos">+0.35</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-13 23:42</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap neg">SELL</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.12</td>
+      <td class="num neg">-0.00</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-13 22:17</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.12</td>
+      <td class="num pos">+0.13</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-13 21:46</td>
+      <td class="nowrap">25</td>
+      <td class="small wrap">GOLD SIGNALS SCALPING ® GSS</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status lost">loss</span></td>
+      <td class="num">0.13</td>
+      <td class="num neg">-1.02</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-13 21:06</td>
+      <td class="nowrap">45</td>
+      <td class="small wrap">Turbo Traders International 🌎</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">tp1</td>
+      <td class="nowrap"><span class="status won">win</span></td>
+      <td class="num">0.17</td>
+      <td class="num pos">+0.10</td>
+      <td class="small">take</td>
+    </tr>
+    
+    <tr>
+      <td class="nowrap small">2026-10-13 16:15</td>
+      <td class="nowrap">3</td>
+      <td class="small wrap">GOLD Snipers</td>
+      <td class="nowrap">XAUUSD</td>
+      <td class="nowrap pos">BUY</td>
+      <td class="nowrap">trail</td>
+      <td class="nowrap"><span class="status lost">loss</span></td>
+      <td class="num">0.26</td>
+      <td class="num neg">-1.02</td>
+      <td class="small">take</td>
+    </tr>
+    
+    </tbody>
+  </table></div>
+  
+</div>
+
+<div class="note">
+  維護：<code>bin/paper_demo_10k.py --live</code>（quick／daily／review job 自動跑）。
+  主線紙上基金：<a href="paper.html">/paper</a> · tracker：<a href="tracker.html">/tracker</a>。
+  資料：(local)/TG Trading/data/demo_10k_01pct_live.json
+</div>
+
+
+  </main>
+  <footer class="footer">
+    Phase 1 · Backtest ≠ Live demo · 唔會混統計 · SQLite · GitHub Pages snapshot · paper only · 無實盤下單
+  </footer>
+  <script src="static/sort-table.js" defer></script>
+<!-- algowise-theme -->
+<script src="static/algowise-theme.js" defer></script>
+</body>
+</html>
