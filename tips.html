@@ -1,0 +1,4184 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <base href="https://algowise-ai.github.io/tg-trading-dashboard/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>訊號 · TG Trading · FX/XAU</title>
+  <link rel="stylesheet" href="static/style.css" />
+<!-- algowise-theme-head -->
+<script>
+(function(){try{var m=localStorage.getItem("algowise-theme")||"system";
+document.documentElement.setAttribute("data-theme",m);
+var dark=window.matchMedia("(prefers-color-scheme: dark)").matches;
+var r=m==="light"?"light":m==="dark"?"dark":(dark?"dark":"light");
+document.documentElement.setAttribute("data-theme-resolved",r);
+}catch(e){}})();
+</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span>TG Trading · FX/XAU</span>
+    </div>
+    <nav>
+      <a href="index.html" class="">總覽 Dashboard</a>
+      <a href="demo.html" class="">真倉 Demo</a>
+      <a href="paper.html" class="">紙上基金</a>
+      <a href="tracker.html" class="">Tracker</a>
+      <a href="channels.html" class="">頻道 Channels</a>
+      <a href="tips.html" class="active">訊號 Tips</a>
+      <a href="api/stats.json" class="muted">API</a>
+    </nav>
+  </header>
+  <main class="container">
+    
+<h1>訊號日誌 Tip log</h1>
+
+<form class="filters" method="get" action="/tips">
+  <label>
+    Track
+    <select name="track_kind">
+      <option value="">全部</option>
+      <option value="backtest" >Backtest</option>
+      <option value="live_demo" >Live demo</option>
+    </select>
+  </label>
+  <label>
+    Channel
+    <select name="channel_id">
+      <option value="">全部</option>
+      
+      <option value="1" >#1 TWP VIP 🏆</option>
+      
+      <option value="2" >#2 TWP GOLD 📈</option>
+      
+      <option value="12" >#3 GOLD Snipers</option>
+      
+      <option value="3" >#4 GARY GOLD TRADER</option>
+      
+      <option value="4" >#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</option>
+      
+      <option value="5" >#8 SureShot GOLD</option>
+      
+      <option value="18" >#9 FX PROFIT SIGNAL (FREE)</option>
+      
+      <option value="19" >#10 TFXC PREMIUM</option>
+      
+      <option value="6" >#11 Sureshot FX 🎯</option>
+      
+      <option value="21" >#12 Market Makers</option>
+      
+      <option value="7" >#13 Quartz Academy 💠</option>
+      
+      <option value="23" >#14 Octa Analytics</option>
+      
+      <option value="24" >#15 TFXC SIGNALS</option>
+      
+      <option value="25" >#16 TFXC SIGNALS UK 🇬🇧 🔥</option>
+      
+      <option value="26" >#17 AamirFx_Pro ( #Father_Of_Gold )</option>
+      
+      <option value="8" >#18 Trading Central FX | Forex Signals 🌍</option>
+      
+      <option value="28" >#19 School Of Trades</option>
+      
+      <option value="31" >#22 Ben, Gold Trader</option>
+      
+      <option value="33" >#24 GTMoFx 🤴🏽 (goldtradermo)</option>
+      
+      <option value="34" >#25 GOLD SIGNALS SCALPING ® GSS</option>
+      
+      <option value="35" >#26 🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</option>
+      
+      <option value="37" >#28 Trade with Pat 🆓 (FRN)</option>
+      
+      <option value="38" >#29 Liquidity Trading ™️</option>
+      
+      <option value="40" >#31 VANTAGE FOREX SIGNALS OFFICIAL</option>
+      
+      <option value="41" >#32 🌐 𝗚𝗼𝗹𝗱 | fσrεx rεsεarch 💱⚜️</option>
+      
+      <option value="9" >#36 GFR ANALYSIS FREE</option>
+      
+      <option value="46" >#37 Traders Gold Empire Forex</option>
+      
+      <option value="47" >#38 DEN GOLD MASTER</option>
+      
+      <option value="48" >#39 Gold Snipers Forex Free</option>
+      
+      <option value="49" >#40 Sureshot INDICES ⚡️</option>
+      
+      <option value="7339" >#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</option>
+      
+      <option value="7340" >#45 Turbo Traders International 🌎</option>
+      
+    </select>
+  </label>
+  <label>
+    Status
+    <select name="status">
+      <option value="">全部</option>
+      
+      <option value="open" >open</option>
+      
+      <option value="hit_tp" >hit_tp</option>
+      
+      <option value="hit_sl" >hit_sl</option>
+      
+      <option value="closed" >closed</option>
+      
+      <option value="pending" >pending</option>
+      
+      <option value="cancelled" >cancelled</option>
+      
+    </select>
+  </label>
+  <label>
+    Symbol
+    <select name="symbol">
+      <option value="">全部</option>
+      
+      <option value="XAUUSD" >XAUUSD</option>
+      
+      <option value="EURUSD" >EURUSD</option>
+      
+      <option value="GBPUSD" >GBPUSD</option>
+      
+      <option value="USDJPY" >USDJPY</option>
+      
+      <option value="NAS100" >NAS100</option>
+      
+      <option value="US30" >US30</option>
+      
+    </select>
+  </label>
+  <button type="submit">篩選</button>
+  <a class="btn-link" href="tips.html">重設</a>
+</form>
+
+<section class="panel">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th><th>Track</th><th>Posted</th><th>Channel</th>
+        <th>Symbol</th><th>Side</th><th>Entry</th><th>SL</th><th>TP</th>
+        <th>Status</th><th>Pips</th><th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td class="muted">16468</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-07 16:56:13</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          BTCUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>76178.0</td>
+        <td>75950.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[76212.0, 76258.0, 76406.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -228.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16467</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-07 00:48:42</td>
+        <td>#38 DEN GOLD MASTER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4063.5</td>
+        <td>4077.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4059.5, 4055.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4063.5-4073.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16466</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-07 00:06:44</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4062.0</td>
+        <td>4070.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4056.0, 4050.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +60.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4062-4068</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16465</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 22:33:04</td>
+        <td>#38 DEN GOLD MASTER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4140.0</td>
+        <td>4155.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4135.0, 4130.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4140-4150</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16464</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 21:48:29</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4050.6</td>
+        <td>4062.6</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4048.8, 4047.0, 4038.6]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16463</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 21:39:39</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4054.3</td>
+        <td>4066.3</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4052.5, 4050.7, 4042.3]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16462</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 21:38:43</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4052.5</td>
+        <td>4064.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4050.7, 4048.9, 4040.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16461</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 21:38:09</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4049.1</td>
+        <td>4061.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4047.3, 4045.5, 4037.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16460</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 21:30:04</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4037.7</td>
+        <td>4023.7</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4039.5, 4041.3, 4049.7]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16459</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 21:17:37</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4060.0</td>
+        <td>4085.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4030.0, 3990.0]</td>
+        <td><span class="status open">open</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16458</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 20:06:42</td>
+        <td>#14 Octa Analytics</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4080.0</td>
+        <td>4115.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4025.0]</td>
+        <td><span class="status open">open</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16457</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 19:59:56</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4062.9</td>
+        <td>4050.9</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4064.7, 4066.5, 4074.9]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16456</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 19:57:29</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4064.5</td>
+        <td>4052.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4066.3, 4068.1, 4076.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16455</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 19:28:34</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4077.28</td>
+        <td>4087.09</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4064.0, 4035.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +132.8
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16453</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 18:25:45</td>
+        <td>#3 GOLD Snipers</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4067.0</td>
+        <td>4079.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4062.0, 4057.0, 4052.0, 4032.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4067-69</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16454</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 18:20:10</td>
+        <td>#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4069.0</td>
+        <td>4099.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4038.0, 4000.0]</td>
+        <td><span class="status open">open</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4069-4080</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16451</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 17:21:35</td>
+        <td>#26 🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4037.0</td>
+        <td>4028.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4047.0, 4060.0]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16452</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 17:14:23</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4080.0</td>
+        <td>4107.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4060.0, 4030.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +200.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16450</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 16:45:57</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4072.0</td>
+        <td>4092.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4035.0, 3990.0]</td>
+        <td><span class="status open">open</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16448</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 16:31:43</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4067.8</td>
+        <td>4079.8</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4066.0, 4064.2, 4055.8]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16449</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 16:24:02</td>
+        <td>#40 Sureshot INDICES ⚡️</td>
+        <td>
+          USOIL
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>92.24</td>
+        <td>91.14</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[95.24]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16446</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 16:20:17</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4066.8</td>
+        <td>4078.8</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4065.0, 4063.2, 4054.8]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16447</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 16:07:37</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4056.0</td>
+        <td>4076.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4040.0, 4020.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -200.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16442</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:55:24</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4056.2</td>
+        <td>4070.2</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4054.1, 4052.0, 4042.2]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +21.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16443</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:49:29</td>
+        <td>#15 TFXC SIGNALS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4044.0</td>
+        <td>4032.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4045.8, 4047.6, 4056.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16444</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:49:27</td>
+        <td>#16 TFXC SIGNALS UK 🇬🇧 🔥</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4044.0</td>
+        <td>4032.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4045.8, 4047.6, 4056.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16441</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:47:38</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4044.0</td>
+        <td>4032.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4045.8, 4047.6, 4056.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16445</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:46:11</td>
+        <td>#24 GTMoFx 🤴🏽 (goldtradermo)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4044.7</td>
+        <td>4036.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4047.0, 4049.0, 4051.0, 4053.0, 4055.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +23.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4044.7-4041</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16440</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:37:05</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4042.7</td>
+        <td>4032.7</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4044.7, 4046.7]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +20.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4042.7-4035.7</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16438</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:22:31</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4049.0</td>
+        <td>4039.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4059.0, 4069.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=100/200;entry_range=4049-4044;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16439</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 15:16:18</td>
+        <td>#17 AamirFx_Pro ( #Father_Of_Gold )</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4057.0</td>
+        <td>4091.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3941.0]</td>
+        <td><span class="status open">open</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4057-4070</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16437</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 14:58:33</td>
+        <td>#22 Ben, Gold Trader</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4049.0</td>
+        <td>4035.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4153.0, 4157.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -140.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4049-4039</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16436</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 14:56:19</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4049.0</td>
+        <td>4060.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4039.0, 4029.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=100/200;entry_range=4049-4056;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16435</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 14:31:31</td>
+        <td>#11 Sureshot FX 🎯</td>
+        <td>
+          GBPAUD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.9472</td>
+        <td>1.9522</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.9372]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16434</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 14:11:01</td>
+        <td>#26 🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4037.0</td>
+        <td>4028.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4047.0, 4060.0]</td>
+        <td><span class="status closed">closed</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16433</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 13:12:53</td>
+        <td>#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4050.0</td>
+        <td>4067.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4038.0, 4020.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16432</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 13:03:07</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4037.0</td>
+        <td>4028.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4047.0, 4060.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +100.0
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16431</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 11:55:51</td>
+        <td>#8 SureShot GOLD</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4045.29</td>
+        <td>4035.29</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4065.29]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +200.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16430</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 11:22:06</td>
+        <td>#25 GOLD SIGNALS SCALPING ® GSS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4050.0</td>
+        <td>4073.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4047.0, 4044.0, 4041.0, 4038.0, 4035.0, 4032.0, 4029.0, 4026.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +30.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4050-4058</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16429</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 04:11:49</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4098.03</td>
+        <td>4086.97</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4112.0, 4135.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.6
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16428</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-06 00:07:43</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          EURUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>1.12189</td>
+        <td>1.12058</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.12309, 1.12492]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +12.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16427</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 23:36:42</td>
+        <td>#26 🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</td>
+        <td>
+          AUDCHF
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>0.5726</td>
+        <td>0.5746</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[0.567]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +56.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16424</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:52:39</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4105.0</td>
+        <td>4093.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4106.8, 4108.6, 4117.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16425</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:48:33</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4132.71</td>
+        <td>4144.23</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4121.0, 4100.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +117.1
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16426</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:45:52</td>
+        <td>#45 Turbo Traders International 🌎</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4094.0</td>
+        <td>4079.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4098.0, 4102.0, 4115.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16423</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:45:12</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4097.0</td>
+        <td>4085.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4098.8, 4100.6, 4109.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16422</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:42:34</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4107.0</td>
+        <td>4083.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4110.6, 4114.2, 4131.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +36.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16421</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:33:56</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4132.1</td>
+        <td>4144.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4130.3, 4128.5, 4120.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16420</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:30:26</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4127.4</td>
+        <td>4139.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4125.6, 4123.8, 4115.4]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16419</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 22:29:51</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4121.6</td>
+        <td>4133.6</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4119.8, 4118.0, 4109.6]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16418</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 21:52:05</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4127.94</td>
+        <td>4139.834</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4112.0, 4079.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +159.4
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16417</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 21:46:46</td>
+        <td>#22 Ben, Gold Trader</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4123.5</td>
+        <td>4137.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4119.5, 4113.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4123.5-4133.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16416</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 20:55:04</td>
+        <td>#25 GOLD SIGNALS SCALPING ® GSS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4120.0</td>
+        <td>4140.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4117.0, 4114.0, 4111.0, 4108.0, 4105.0, 4102.0, 4099.0, 4097.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +30.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4120-4125</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16415</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 20:42:16</td>
+        <td>#13 Quartz Academy 💠</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4120.0</td>
+        <td>4110.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4125.0, 4130.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4120-4115</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16414</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 20:40:19</td>
+        <td>#39 Gold Snipers Forex Free</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4118.0</td>
+        <td>4107.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4138.0, 4154.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4118-4111</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16412</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 20:34:49</td>
+        <td>#14 Octa Analytics</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4124.0</td>
+        <td>4160.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4088.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +360.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16413</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 20:26:38</td>
+        <td>#19 School Of Trades</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4126.0</td>
+        <td>4110.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4136.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -160.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4126-4116</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16411</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 20:09:51</td>
+        <td>#13 Quartz Academy 💠</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4127.0</td>
+        <td>4117.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4132.0, 4137.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4127-4122</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16410</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 19:42:13</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          GBPJPY
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>213.05</td>
+        <td>214.2</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[211.8, 210.14]</td>
+        <td><span class="status open">open</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16409</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 19:35:06</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4135.0</td>
+        <td>4147.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4130.0, 4120.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4135-4140</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16408</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 19:29:44</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4134.0</td>
+        <td>4150.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4100.0, 4060.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +340.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16407</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 19:24:16</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4137.5</td>
+        <td>4148.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4132.5, 4122.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4137.5-4142.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16406</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 18:18:14</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4125.0</td>
+        <td>4135.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4120.0, 4110.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4125-4130</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16405</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 17:44:45</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4128.0</td>
+        <td>4145.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4100.0, 4060.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +280.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16404</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 17:42:31</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4127.4</td>
+        <td>4139.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4125.6, 4123.8, 4115.4]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16401</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 16:32:35</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4123.0</td>
+        <td>4135.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4121.2, 4119.4, 4111.0]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16402</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 16:30:51</td>
+        <td>#11 Sureshot FX 🎯</td>
+        <td>
+          GBPJPY
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>213.22</td>
+        <td>213.72</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[212.22]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16400</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 16:21:08</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4128.0</td>
+        <td>4118.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4133.0, 4138.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=50/100;entry_range=4128-4123;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16403</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 16:16:55</td>
+        <td>#19 School Of Trades</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4125.0</td>
+        <td>4110.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4135.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4125-4115</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16398</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 16:14:55</td>
+        <td>#24 GTMoFx 🤴🏽 (goldtradermo)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4127.7</td>
+        <td>4118.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4130.0, 4132.0, 4134.0, 4136.0, 4138.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +23.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4127.7-4124</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16399</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 16:13:45</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4126.0</td>
+        <td>4118.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4129.0, 4136.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +30.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4126-4121</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16397</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 15:36:05</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4115.6</td>
+        <td>4105.6</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4117.6, 4119.6]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +20.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4115.6-4108.6</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16395</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:59:09</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4127.7</td>
+        <td>4142.7</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4125.4, 4123.2, 4112.7]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +23.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16396</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:56:23</td>
+        <td>#22 Ben, Gold Trader</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4127.0</td>
+        <td>4113.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4132.0, 4135.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4127-4117</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16394</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:54:26</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4126.0</td>
+        <td>4137.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4121.0, 4116.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=50/100;entry_range=4126-4135;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16393</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:28:44</td>
+        <td>#12 Market Makers</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4125.5</td>
+        <td>4110.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4129.5, 4145.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4125.5-4120.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16390</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:11:45</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4122.1</td>
+        <td>4134.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4120.3, 4118.5, 4110.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16391</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:10:19</td>
+        <td>#15 TFXC SIGNALS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4123.1</td>
+        <td>4138.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4120.9, 4118.6, 4108.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +22.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16392</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:10:16</td>
+        <td>#16 TFXC SIGNALS UK 🇬🇧 🔥</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4123.1</td>
+        <td>4138.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4120.9, 4118.6, 4108.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +22.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16389</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 14:08:14</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4123.1</td>
+        <td>4138.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4120.9, 4118.6, 4108.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +22.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16387</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 13:29:09</td>
+        <td>#12 Market Makers</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4000.0</td>
+        <td>—</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4143.0]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_scaled_x1000(from=4)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16386</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 13:29:04</td>
+        <td>#12 Market Makers</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4097.0</td>
+        <td>—</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4143.0]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4097-4122.4</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16388</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 13:23:06</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          EURAUD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.60622</td>
+        <td>1.61453</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.59798, 1.57897]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16385</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 13:21:10</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          EURAUD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.60622</td>
+        <td>1.61453</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.59798, 1.57897]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -83.1
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16384</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 13:14:51</td>
+        <td>#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</td>
+        <td>
+          EURAUD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.606</td>
+        <td>1.6144</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.5975, 1.5792]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -84.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16383</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 12:00:39</td>
+        <td>#8 SureShot GOLD</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4140.4</td>
+        <td>4130.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4160.4]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16382</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 11:33:07</td>
+        <td>#25 GOLD SIGNALS SCALPING ® GSS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4135.0</td>
+        <td>4115.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4138.0, 4141.0, 4144.0, 4147.0, 4150.0, 4153.0, 4156.0, 4159.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +30.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4135-4130</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16381</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 10:45:43</td>
+        <td>#40 Sureshot INDICES ⚡️</td>
+        <td>
+          US30
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>53570.4</td>
+        <td>53460.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[53870.4]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16380</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 09:13:18</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4105.1</td>
+        <td>4119.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4103.0, 4100.9, 4091.1]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -140.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16379</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 00:36:23</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          GBPCAD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.8855</td>
+        <td>1.891</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.8775, 1.861]</td>
+        <td><span class="status open">open</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16378</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-05 00:32:50</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          AUDCHF
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>0.5726</td>
+        <td>0.5746</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[0.567]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +56.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16376</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 22:59:02</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4037.1</td>
+        <td>4025.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4038.9, 4040.7, 4049.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16377</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 22:55:57</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4047.77</td>
+        <td>4067.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4020.0, 3960.0]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16375</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 22:17:00</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4042.0</td>
+        <td>4031.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4046.0, 4056.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4042-4036</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16373</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 21:51:52</td>
+        <td>#26 🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4041.0</td>
+        <td>4030.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4052.0, 4065.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16374</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 21:50:32</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4041.0</td>
+        <td>4030.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4052.0, 4065.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16372</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 21:03:34</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4040.0</td>
+        <td>4030.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4050.0, 4060.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=100/200;entry_range=4040-4035;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16371</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:47:39</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4039.0</td>
+        <td>4053.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4017.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -140.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16370</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:39:51</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4039.0</td>
+        <td>4027.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4053.0, 4070.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +140.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16368</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:35:32</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4044.0</td>
+        <td>4033.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4054.0, 4064.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=100/200;entry_range=4044-4038;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16369</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:34:05</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          EURUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.12491</td>
+        <td>1.12611</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.12371, 1.12116]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -12.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16367</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:29:26</td>
+        <td>#14 Octa Analytics</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4039.0</td>
+        <td>4077.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4001.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -380.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16366</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:24:27</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4041.0</td>
+        <td>4051.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4031.0, 4021.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16363</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:10:29</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4036.0</td>
+        <td>4046.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4031.0, 4026.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=50/100;entry_range=4036-4042;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16365</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:02:56</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4040.5</td>
+        <td>4030.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4042.5, 4044.5]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4040.5-4033.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16364</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 20:00:51</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4040.2</td>
+        <td>4030.2</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4042.2, 4044.2]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +20.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4040.2-4033.2</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16362</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 19:15:27</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4041.5</td>
+        <td>4027.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4043.6, 4045.7, 4055.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +21.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16361</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 18:59:59</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4048.0</td>
+        <td>4065.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3980.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -170.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pruned_wrong_side=1</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16360</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 18:46:16</td>
+        <td>#13 Quartz Academy 💠</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4040.0</td>
+        <td>4030.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4045.0, 4050.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4040-4035</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16359</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 16:48:53</td>
+        <td>#24 GTMoFx 🤴🏽 (goldtradermo)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4036.6</td>
+        <td>4026.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4039.0, 4041.0, 4043.0, 4045.0, 4047.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +24.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4036.6-4032;tp_pruned_wrong_side=1</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16358</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 16:12:49</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4036.0</td>
+        <td>4046.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4026.0, 4016.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16357</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 15:48:08</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          NZDUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>0.5625</td>
+        <td>0.5635</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[0.5612, 0.5583]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -10.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16356</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 15:45:22</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4026.4</td>
+        <td>4038.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4024.6, 4022.8, 4014.4]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16354</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 15:32:50</td>
+        <td>#1 TWP VIP 🏆</td>
+        <td>
+          AUDUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>0.69926</td>
+        <td>0.69994</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[0.69892, 0.69802]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -6.8
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16355</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 15:24:24</td>
+        <td>#22 Ben, Gold Trader</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>4021.0</td>
+        <td>4007.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4025.0, 4028.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=4021-4011</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16353</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 15:17:58</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4022.2</td>
+        <td>4032.2</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4020.7, 4019.2, 4012.2]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16352</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 14:55:01</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4022.5</td>
+        <td>4034.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4020.7, 4018.9, 4010.5]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16350</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 14:39:45</td>
+        <td>#15 TFXC SIGNALS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4022.1</td>
+        <td>4034.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4020.3, 4018.5, 4010.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16351</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 14:39:43</td>
+        <td>#16 TFXC SIGNALS UK 🇬🇧 🔥</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4022.1</td>
+        <td>4034.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4020.3, 4018.5, 4010.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16349</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 14:39:06</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4022.1</td>
+        <td>4034.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4020.3, 4018.5, 4010.1]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16348</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 14:20:23</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4021.3</td>
+        <td>4035.3</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4019.2, 4017.1, 4007.3]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +21.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16347</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 14:18:47</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4014.2</td>
+        <td>4024.2</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4012.7, 4011.2, 4004.2]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +15.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16346</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 14:01:19</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4006.0</td>
+        <td>4026.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[4001.0, 3996.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=50/100;entry_range=4006-4011;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16345</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 13:59:13</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>4002.0</td>
+        <td>4012.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3997.0, 3992.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=50/100;entry_range=4002-4007;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16344</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 13:19:09</td>
+        <td>#12 Market Makers</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3951.0</td>
+        <td>3941.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3955.0, 4061.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3951-3946</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16343</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 12:17:11</td>
+        <td>#8 SureShot GOLD</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3946.65</td>
+        <td>3956.65</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3926.65]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16342</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 12:13:07</td>
+        <td>#25 GOLD SIGNALS SCALPING ® GSS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3947.0</td>
+        <td>3925.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3950.0, 3953.0, 3956.0, 3959.0, 3962.0, 3965.0, 3968.0, 3971.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +30.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3947-3940</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16341</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 12:03:03</td>
+        <td>#8 SureShot GOLD</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3937.2</td>
+        <td>3947.2</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3917.2]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16340</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 11:22:03</td>
+        <td>#40 Sureshot INDICES ⚡️</td>
+        <td>
+          US30
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>51720.1</td>
+        <td>51610.1</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[52020.1]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16339</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 08:04:35</td>
+        <td>#11 Sureshot FX 🎯</td>
+        <td>
+          EURNZD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>2.0037</td>
+        <td>2.0087</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.9937]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16338</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-04 00:47:43</td>
+        <td>#38 DEN GOLD MASTER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3930.4</td>
+        <td>3944.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3926.4, 3922.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3930.4-3940.4</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16337</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 23:37:30</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          GBPUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.34122</td>
+        <td>1.34305</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.3385, 1.3335]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -18.3
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16336</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 22:37:25</td>
+        <td>#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</td>
+        <td>
+          US30
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>51699.0</td>
+        <td>51423.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[52431.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -276.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pruned_wrong_side=1</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16331</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 22:31:40</td>
+        <td>#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</td>
+        <td>
+          USOIL
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>96.73</td>
+        <td>99.62</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[94.0, 88.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +273.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16333</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 22:30:39</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3964.52</td>
+        <td>3978.28</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3947.0, 3899.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +175.2
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16335</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 22:25:56</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          US30
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>51750.0</td>
+        <td>51470.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[52050.0, 52500.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -280.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16332</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 22:20:39</td>
+        <td>#26 🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3954.0</td>
+        <td>3973.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3929.0, 3890.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +250.0
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16334</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 22:20:16</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3954.0</td>
+        <td>3973.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3929.0, 3890.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +250.0
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16330</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 21:53:16</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3968.0</td>
+        <td>3985.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3940.0, 3900.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +280.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16329</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 21:04:49</td>
+        <td>#38 DEN GOLD MASTER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3920.0</td>
+        <td>3916.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3934.0, 3940.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +140.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16325</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:39:01</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3915.0</td>
+        <td>3925.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3913.5, 3912.0, 3905.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16326</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:38:50</td>
+        <td>#13 Quartz Academy 💠</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3914.0</td>
+        <td>3904.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3919.0, 3924.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3914-3909</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16324</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:34:01</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3913.9</td>
+        <td>3927.9</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3911.8, 3909.7, 3899.9]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -140.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16328</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:33:54</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3914.0</td>
+        <td>3928.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3900.0, 3875.0]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16327</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:32:08</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3914.0</td>
+        <td>3925.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3900.0, 3875.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -110.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16321</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:12:59</td>
+        <td>#13 Quartz Academy 💠</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3900.0</td>
+        <td>3890.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3905.0, 3910.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3900-3895</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16322</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:05:42</td>
+        <td>#15 TFXC SIGNALS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3902.3</td>
+        <td>3916.3</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3900.2, 3898.1, 3888.3]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +21.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16323</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:05:39</td>
+        <td>#16 TFXC SIGNALS UK 🇬🇧 🔥</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3902.3</td>
+        <td>3916.3</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3900.2, 3898.1, 3888.3]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +21.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16320</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 20:05:11</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3902.3</td>
+        <td>3916.3</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3900.2, 3898.1, 3888.3]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +21.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16318</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 19:18:51</td>
+        <td>#14 Octa Analytics</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3905.0</td>
+        <td>3939.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3871.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -340.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16319</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 19:08:34</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3907.0</td>
+        <td>3922.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3892.0, 3875.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -150.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16317</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 18:51:04</td>
+        <td>#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3905.0</td>
+        <td>3921.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3875.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -160.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pruned_wrong_side=1</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16316</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 18:42:51</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3904.0</td>
+        <td>3894.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3909.0, 3914.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=50/100;entry_range=3904-3896;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16315</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 17:32:19</td>
+        <td>#18 Trading Central FX | Forex Signals 🌍</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3903.0</td>
+        <td>3893.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3950.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +470.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16313</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 17:17:46</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3899.7</td>
+        <td>3911.7</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3897.9, 3896.1, 3887.7]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16314</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 17:08:09</td>
+        <td>#24 GTMoFx 🤴🏽 (goldtradermo)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3900.7</td>
+        <td>3911.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3898.0, 3896.0, 3894.0, 3892.0, 3890.0, 3888.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -103.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3900.7-3905</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16312</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:51:33</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3897.0</td>
+        <td>3887.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3907.0, 3917.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=100/200;entry_range=3897-3890;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16309</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:48:16</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3899.0</td>
+        <td>3889.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[]</td>
+        <td><span class="status pending">pending</span></td>
+        <td class="muted">
+          —
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3899-3892</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16308</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:48:01</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3899.5</td>
+        <td>3889.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3901.5, 3903.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +20.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3899.5-3902.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16310</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:46:47</td>
+        <td>#44 ✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+        <td>
+          GBPCAD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>1.8734</td>
+        <td>1.8723</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.8751, 1.8775]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -11.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16307</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:45:46</td>
+        <td>#2 TWP GOLD 📈</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3897.71</td>
+        <td>3889.96</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3901.57, 3910.87]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +38.6
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16311</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:40:15</td>
+        <td>#45 Turbo Traders International 🌎</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3907.0</td>
+        <td>3892.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3911.0, 3915.0, 3925.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16306</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:30:58</td>
+        <td>#13 Quartz Academy 💠</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3908.0</td>
+        <td>3898.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3913.0, 3918.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3908-3903</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16305</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:13:21</td>
+        <td>#24 GTMoFx 🤴🏽 (goldtradermo)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3910.1</td>
+        <td>3901.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3912.0, 3914.0, 3916.0, 3918.0, 3920.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -91.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3910.1-3906</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16304</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 16:11:29</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3905.0</td>
+        <td>3895.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3910.0, 3915.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3905-3900</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16302</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 15:26:19</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3909.3</td>
+        <td>3899.3</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3911.3, 3913.3]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +20.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3909.3-3902.3</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16301</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 15:26:03</td>
+        <td>#31 VANTAGE FOREX SIGNALS OFFICIAL</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3910.0</td>
+        <td>3900.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3912.0, 3914.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +20.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3910-3903</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16300</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 15:21:35</td>
+        <td>#22 Ben, Gold Trader</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3910.5</td>
+        <td>3925.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3906.5, 3902.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3910.5-3920.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16303</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 15:21:31</td>
+        <td>#38 DEN GOLD MASTER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3910.5</td>
+        <td>3925.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3906.5, 3902.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3910.5-3920.5</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16298</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 15:18:57</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3909.5</td>
+        <td>3897.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3911.3, 3913.1, 3921.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16299</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 15:15:57</td>
+        <td>#17 AamirFx_Pro ( #Father_Of_Gold )</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3912.0</td>
+        <td>3933.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3870.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -210.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3912-3919</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16297</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 15:01:51</td>
+        <td>#9 FX PROFIT SIGNAL (FREE)</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3913.0</td>
+        <td>3923.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3908.0, 3903.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3913-3918</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16293</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 14:53:55</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3914.0</td>
+        <td>3904.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3924.0, 3934.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=100/200;entry_range=3914-3908;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16295</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 14:47:26</td>
+        <td>#15 TFXC SIGNALS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3915.8</td>
+        <td>3903.8</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3917.6, 3919.4, 3927.8]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16296</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 14:47:25</td>
+        <td>#16 TFXC SIGNALS UK 🇬🇧 🔥</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3915.8</td>
+        <td>3903.8</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3917.6, 3919.4, 3927.8]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16294</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 14:46:35</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3915.8</td>
+        <td>3903.8</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3917.6, 3919.4, 3927.8]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16291</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 13:54:25</td>
+        <td>#4 GARY GOLD TRADER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3920.0</td>
+        <td>3930.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3915.0, 3910.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;tp_pips=50/100;entry_range=3920-3925;tp_from_pips(pip=0.1)</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16292</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 13:53:15</td>
+        <td>#25 GOLD SIGNALS SCALPING ® GSS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3923.0</td>
+        <td>3943.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3920.0, 3917.0, 3914.0, 3911.0, 3908.0, 3905.0, 3902.0, 3899.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +30.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3923-3928</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16290</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 13:30:46</td>
+        <td>#11 Sureshot FX 🎯</td>
+        <td>
+          GBPNZD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>2.3849</td>
+        <td>2.3899</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[2.3749]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16289</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 10:11:44</td>
+        <td>#8 SureShot GOLD</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3944.09</td>
+        <td>3934.09</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3964.09]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -100.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16288</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 05:53:16</td>
+        <td>#29 Liquidity Trading ™️</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3963.84</td>
+        <td>3976.24</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3947.0, 3895.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +168.4
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16286</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 03:40:15</td>
+        <td>#22 Ben, Gold Trader</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3945.7</td>
+        <td>3959.7</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3941.7, 3936.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3945.7-3955.7</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16287</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 03:40:12</td>
+        <td>#38 DEN GOLD MASTER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3945.7</td>
+        <td>3959.7</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3941.7, 3936.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3945.7-3955.7</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16285</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 01:00:57</td>
+        <td>#38 DEN GOLD MASTER</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3957.0</td>
+        <td>3952.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3971.0, 3978.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -50.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16284</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-03 00:34:56</td>
+        <td>#37 Traders Gold Empire Forex</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3973.0</td>
+        <td>4002.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3950.0, 3930.0, 3900.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -290.0
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16283</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 22:46:08</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          AUDUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>0.70154</td>
+        <td>0.703</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[0.6995]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +20.4
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16282</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 22:41:18</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3965.0</td>
+        <td>3985.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3935.0, 3896.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +300.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16281</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 22:30:14</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3947.0</td>
+        <td>3967.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3920.0, 3896.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -200.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16280</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 22:19:27</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3943.6</td>
+        <td>3962.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3920.0, 3896.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -184.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16278</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 22:14:12</td>
+        <td>#7 𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3945.0</td>
+        <td>3965.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3928.0, 3900.0]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -200.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3945-3955</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16279</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 22:13:27</td>
+        <td>#36 GFR ANALYSIS FREE</td>
+        <td>
+          GBPUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>1.34125</td>
+        <td>1.3435</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[1.33794]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -22.5
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16277</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:53:51</td>
+        <td>#25 GOLD SIGNALS SCALPING ® GSS</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3940.0</td>
+        <td>3918.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3943.0, 3946.0, 3949.0, 3952.0, 3955.0, 3958.0, 3961.0, 3964.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +30.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok;entry_range=3940-3933</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16276</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:50:26</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3950.5</td>
+        <td>3962.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3948.7, 3946.9, 3938.5]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16274</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:46:02</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3948.4</td>
+        <td>3960.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3946.6, 3944.8, 3936.4]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +18.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16275</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:39:20</td>
+        <td>#45 Turbo Traders International 🌎</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3934.0</td>
+        <td>3949.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3930.0, 3925.0, 3915.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +40.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16273</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:39:07</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3927.4</td>
+        <td>3939.4</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3925.6, 3923.8, 3915.4]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16272</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:38:00</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3922.3</td>
+        <td>3934.3</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3920.5, 3918.7, 3910.3]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16271</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:34:04</td>
+        <td>#2 TWP GOLD 📈</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3914.42</td>
+        <td>3920.08</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3911.57, 3903.13]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -56.6
+        </td>
+        <td class="muted">tg_auto;order=limit;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16269</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:26:08</td>
+        <td>#10 TFXC PREMIUM</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="neg">SELL</td>
+        <td>3904.5</td>
+        <td>3916.5</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3902.7, 3900.9, 3892.5]</td>
+        <td><span class="status hit_sl">hit_sl</span></td>
+        <td class="neg">
+          -120.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+      <tr>
+        <td class="muted">16270</td>
+        <td><span class="tag live-tag">live_demo</span></td>
+        <td>2026-11-02 21:19:33</td>
+        <td>#39 Gold Snipers Forex Free</td>
+        <td>
+          XAUUSD
+          
+        </td>
+        <td class="pos">BUY</td>
+        <td>3897.0</td>
+        <td>3885.0</td>
+        <td class="muted" style="max-width:8rem;overflow:hidden;text-overflow:ellipsis;">[3922.0, 3940.0]</td>
+        <td><span class="status hit_tp">hit_tp</span></td>
+        <td class="pos">
+          +250.0
+        </td>
+        <td class="muted">tg_auto;order=market;parse=ok</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</section>
+
+  </main>
+  <footer class="footer">
+    Phase 1 · Backtest ≠ Live demo · 唔會混統計 · SQLite · GitHub Pages snapshot · paper only · 無實盤下單
+  </footer>
+  <script src="static/sort-table.js" defer></script>
+<!-- algowise-theme -->
+<script src="static/algowise-theme.js" defer></script>
+</body>
+</html>
