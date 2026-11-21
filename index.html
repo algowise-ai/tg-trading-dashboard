@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <base href="https://algowise-ai.github.io/tg-trading-dashboard/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>總覽 · TG Trading · FX/XAU</title>
+  <link rel="stylesheet" href="static/style.css" />
+<!-- algowise-theme-head -->
+<script>
+(function(){try{var m=localStorage.getItem("algowise-theme")||"system";
+document.documentElement.setAttribute("data-theme",m);
+var dark=window.matchMedia("(prefers-color-scheme: dark)").matches;
+var r=m==="light"?"light":m==="dark"?"dark":(dark?"dark":"light");
+document.documentElement.setAttribute("data-theme-resolved",r);
+}catch(e){}})();
+</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span>TG Trading · FX/XAU</span>
+    </div>
+    <nav>
+      <a href="index.html" class="active">總覽 Dashboard</a>
+      <a href="demo.html" class="">真倉 Demo</a>
+      <a href="paper.html" class="">紙上基金</a>
+      <a href="tracker.html" class="">Tracker</a>
+      <a href="channels.html" class="">頻道 Channels</a>
+      <a href="tips.html" class="">訊號 Tips</a>
+      <a href="api/stats.json" class="muted">API</a>
+    </nav>
+  </header>
+  <main class="container">
+    
+<h1>總覽 Overview</h1>
+<p class="lede muted">
+  FX/XAU CFD tip tracker（Phase 1）。統計同排行榜<strong>嚴格分開</strong>：
+  <strong>Backtest</strong>（歷史回測）vs <strong>Live demo</strong>（前瞻紙上交易）。
+  唔會同 betting tip-tracker 共用 DB。
+</p>
+
+<section class="track-grid">
+  <div class="track-panel backtest">
+    <div class="track-header">
+      <h2>Backtest 回測</h2>
+      <span class="tag track-tag">historical</span>
+    </div>
+    <p class="track-note muted">
+      歷史訊號紙上結算（pips）。
+      
+      <strong class="amber">含 3 條 EXAMPLE 示範列（非真實成績）</strong>
+      
+    </p>
+    <div class="cards compact-cards">
+      <div class="card">
+        <div class="label">訊號數</div>
+        <div class="value">14839</div>
+        <div class="sub">settled 13125</div>
+      </div>
+      <div class="card">
+        <div class="label">勝率 (TP)</div>
+        <div class="value">64.1%</div>
+        <div class="sub">8415 TP / 4710 SL · 1514 open</div>
+      </div>
+      <div class="card">
+        <div class="label">累計 pips</div>
+        <div class="value pos">
+          +455569.6
+        </div>
+        <div class="sub">hit_tp / hit_sl only</div>
+      </div>
+      <div class="card">
+        <div class="label">Open / pending</div>
+        <div class="value">1514</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="track-panel live">
+    <div class="track-header">
+      <h2>Live demo 前瞻</h2>
+      <span class="tag track-tag live-tag">live_demo</span>
+    </div>
+    <p class="track-note muted">
+      Forward test only。Phase 1 由空開始；唔會發明結果、唔會實盤下單。
+    </p>
+    <div class="cards compact-cards">
+      <div class="card">
+        <div class="label">訊號數</div>
+        <div class="value">2050</div>
+        <div class="sub">settled 1915</div>
+      </div>
+      <div class="card">
+        <div class="label">勝率 (TP)</div>
+        <div class="value">63.7%</div>
+        <div class="sub">1220 TP / 695 SL · 123 open</div>
+      </div>
+      <div class="card">
+        <div class="label">累計 pips</div>
+        <div class="value pos">
+          +11498.4
+        </div>
+        <div class="sub">awaiting forward fills</div>
+      </div>
+      <div class="card">
+        <div class="label">Open / pending</div>
+        <div class="value">123</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="track-grid">
+  <div class="panel">
+    <h2>Backtest · 累計 pips</h2>
+    <div class="chart" id="chart-backtest">
+      
+      <svg viewBox="0 0 400 160" preserveAspectRatio="none" aria-label="Backtest cumulative pips">
+        
+        
+        
+        
+        
+        <line class="axis" x1="0" y1="80" x2="400" y2="80" />
+        
+        <polyline fill="none" stroke="#94a3b8" stroke-width="2"
+          points="10.0,139.7 11.0,139.7 11.9,139.7 12.9,139.9 13.8,140.0 14.8,140.0 15.7,139.8 16.7,139.8 17.6,138.4 18.6,138.6 19.5,138.3 20.5,138.2 21.4,138.0 22.4,137.8 23.3,133.9 24.3,133.7 25.2,133.9 26.2,133.7 27.1,133.7 28.1,133.9 29.0,134.1 30.0,134.0 31.0,134.2 31.9,133.9 32.9,133.7 33.8,128.8 34.8,128.7 35.7,128.6 36.7,128.2 37.6,128.1 38.6,77.7 39.5,78.0 40.5,77.9 41.4,75.1 42.4,74.8 43.3,74.7 44.3,74.9 45.2,75.0 46.2,74.9 47.1,74.8 48.1,75.8 49.0,75.7 50.0,75.8 51.0,75.9 51.9,75.9 52.9,75.7 53.8,75.8 54.8,75.5 55.7,75.6 56.7,75.4 57.6,75.6 58.6,75.3 59.5,75.2 60.5,75.3 61.4,75.2 62.4,73.3 63.3,73.4 64.3,73.4 65.2,70.2 66.2,70.3 67.1,70.1 68.1,70.3 69.0,70.3 70.0,70.5 71.0,69.8 71.9,68.9 72.9,62.5 73.8,62.3 74.8,61.3 75.7,61.5 76.7,61.7 77.6,61.5 78.6,61.3 79.5,61.3 80.5,62.0 81.4,62.3 82.4,62.3 83.3,62.5 84.3,62.5 85.2,62.3 86.2,62.4 87.1,62.3 88.1,62.2 89.0,62.5 90.0,61.5 91.0,61.6 91.9,61.6 92.9,61.2 93.8,60.0 94.8,60.0 95.7,60.0 96.7,60.2 97.6,60.4 98.6,60.6 99.5,60.6 100.5,60.6 101.4,60.4 102.4,60.2 103.3,60.0 104.3,59.9 105.2,59.9 106.2,59.9 107.1,59.9 108.1,59.9 109.0,60.0 110.0,60.3 111.0,59.4 111.9,56.3 112.9,53.3 113.8,52.8 114.8,53.0 115.7,52.9 116.7,53.3 117.6,53.6 118.6,54.1 119.5,54.0 120.5,54.9 121.4,54.8 122.4,54.4 123.3,54.5 124.3,54.2 125.2,54.2 126.2,54.1 127.1,54.3 128.1,54.1 129.0,54.2 130.0,54.3 131.0,54.3 131.9,54.2 132.9,54.2 133.8,53.9 134.8,54.2 135.7,54.1 136.7,54.3 137.6,54.3 138.6,54.4 139.5,54.5 140.5,54.3 141.4,54.4 142.4,54.7 143.3,54.7 144.3,54.2 145.2,54.1 146.2,54.1 147.1,54.4 148.1,54.3 149.0,54.4 150.0,54.2 151.0,54.1 151.9,54.1 152.9,54.3 153.8,54.1 154.8,53.9 155.7,54.1 156.7,54.1 157.6,54.0 158.6,54.2 159.5,54.5 160.5,54.7 161.4,54.7 162.4,48.3 163.3,48.4 164.3,48.5 165.2,48.5 166.2,48.3 167.1,48.2 168.1,47.9 169.0,48.1 170.0,44.9 171.0,44.6 171.9,44.8 172.9,44.7 173.8,44.7 174.8,44.2 175.7,44.2 176.7,44.1 177.6,44.1 178.6,46.0 179.5,45.8 180.5,45.9 181.4,46.0 182.4,45.9 183.3,45.7 184.3,45.9 185.2,45.8 186.2,45.7 187.1,45.3 188.1,45.8 189.0,45.4 190.0,44.9 191.0,45.0 191.9,44.8 192.9,44.8 193.8,44.6 194.8,44.6 195.7,44.5 196.7,44.2 197.6,38.1 198.6,37.9 199.5,37.7 200.5,37.3 201.4,37.0 202.4,36.9 203.3,36.6 204.3,36.2 205.2,36.3 206.2,36.2 207.1,35.9 208.1,35.6 209.0,29.7 210.0,29.8 211.0,29.6 211.9,29.9 212.9,30.3 213.8,30.1 214.8,28.9 215.7,28.9 216.7,29.0 217.6,26.6 218.6,27.0 219.5,26.9 220.5,26.8 221.4,27.5 222.4,28.4 223.3,28.2 224.3,27.7 225.2,27.6 226.2,30.5 227.1,30.5 228.1,30.3 229.0,30.6 230.0,30.1 231.0,29.8 231.9,29.7 232.9,29.6 233.8,30.6 234.8,30.5 235.7,30.1 236.7,29.9 237.6,29.6 238.6,30.0 239.5,30.1 240.5,30.4 241.4,32.3 242.4,32.2 243.3,32.5 244.3,32.8 245.2,32.8 246.2,32.6 247.1,32.8 248.1,32.9 249.0,32.3 250.0,32.7 251.0,32.7 251.9,32.5 252.9,32.6 253.8,30.7 254.8,30.2 255.7,24.2 256.7,24.2 257.6,24.2 258.6,24.1 259.5,23.8 260.5,23.7 261.4,23.5 262.4,23.5 263.3,22.5 264.3,22.3 265.2,22.0 266.2,21.6 267.1,21.5 268.1,21.9 269.0,21.9 270.0,23.4 271.0,23.3 271.9,22.8 272.9,22.1 273.8,21.5 274.8,21.7 275.7,21.7 276.7,21.7 277.6,21.8 278.6,20.3 279.5,20.3 280.5,20.4 281.4,20.4 282.4,26.2 283.3,25.9 284.3,25.9 285.2,26.3 286.2,27.4 287.1,27.2 288.1,27.1 289.0,27.2 290.0,27.4 291.0,27.8 291.9,27.7 292.9,10.3 293.8,10.0 294.8,11.0 295.7,11.0 296.7,11.1 297.6,10.9 298.6,10.6 299.5,10.5 300.5,10.5 301.4,10.8 302.4,11.5 303.3,11.7 304.3,11.4 305.2,11.8 306.2,11.7 307.1,11.7 308.1,13.3 309.0,13.2 310.0,13.1 311.0,13.0 311.9,13.0 312.9,12.6 313.8,12.5 314.8,13.5 315.7,13.1 316.7,13.2 317.6,13.1 318.6,13.0 319.5,12.8 320.5,12.8 321.4,13.0 322.4,13.6 323.3,13.4 324.3,13.5 325.2,13.3 326.2,13.1 327.1,13.3 328.1,12.9 329.0,12.8 330.0,12.4 331.0,12.4 331.9,12.3 332.9,12.3 333.8,12.5 334.8,12.4 335.7,12.6 336.7,12.9 337.6,13.2 338.6,13.1 339.5,13.3 340.5,13.2 341.4,15.2 342.4,15.2 343.3,15.6 344.3,15.8 345.2,16.1 346.2,16.0 347.1,15.7 348.1,15.8 349.0,15.6 350.0,15.6 351.0,15.5 351.9,15.8 352.9,16.2 353.8,16.1 354.8,15.5 355.7,16.0 356.7,15.8 357.6,15.4 358.6,15.5 359.5,14.9 360.5,15.0 361.4,15.0 362.4,16.4 363.3,16.1 364.3,16.0 365.2,15.8 366.2,16.0 367.1,16.7 368.1,16.8 369.0,13.9 370.0,14.1 371.0,14.4 371.9,14.4 372.9,13.9 373.8,13.9 374.8,13.3 375.7,13.1 376.7,13.1 377.6,12.8 378.6,12.8 379.5,12.2 380.5,12.4 381.4,12.9 382.4,12.7 383.3,12.4 384.3,12.2 385.2,12.1 386.2,12.1 387.1,12.1 388.1,12.3 389.0,12.5 390.0,12.4" />
+        
+      </svg>
+      <div class="chart-meta">
+        <span>start 30.0</span>
+        <span class="amber">EXAMPLE 可能混入</span>
+        <span>end 455569.6 pips</span>
+      </div>
+      
+    </div>
+  </div>
+  <div class="panel">
+    <h2>Live demo · 累計 pips</h2>
+    <div class="chart" id="chart-live">
+      
+      <svg viewBox="0 0 400 160" preserveAspectRatio="none" aria-label="Live demo cumulative pips">
+        
+        
+        
+        
+        
+        <line class="axis" x1="0" y1="80" x2="400" y2="80" />
+        
+        <polyline fill="none" stroke="#5b8cff" stroke-width="2"
+          points="10.0,109.5 11.0,109.0 11.9,106.4 12.9,106.8 13.8,109.3 14.8,111.8 15.7,112.2 16.7,111.7 17.6,116.4 18.6,116.7 19.5,118.1 20.5,118.2 21.4,126.7 22.4,127.5 23.3,128.9 24.3,126.7 25.2,126.6 26.2,130.0 27.1,129.4 28.1,136.0 29.0,135.8 30.0,138.0 31.0,136.7 31.9,132.9 32.9,133.6 33.8,138.2 34.8,139.6 35.7,140.0 36.7,138.7 37.6,139.7 38.6,135.9 39.5,133.3 40.5,129.5 41.4,125.3 42.4,128.5 43.3,129.1 44.3,131.5 45.2,131.8 46.2,131.5 47.1,131.2 48.1,132.1 49.0,123.8 50.0,120.5 51.0,113.6 51.9,112.6 52.9,109.2 53.8,103.2 54.8,103.2 55.7,104.0 56.7,104.8 57.6,105.1 58.6,107.8 59.5,107.4 60.5,108.1 61.4,109.4 62.4,111.9 63.3,111.5 64.3,112.7 65.2,106.8 66.2,110.6 67.1,111.9 68.1,111.8 69.0,108.8 70.0,105.2 71.0,101.6 71.9,102.1 72.9,103.3 73.8,101.1 74.8,95.2 75.7,100.1 76.7,98.9 77.6,99.1 78.6,101.0 79.5,100.5 80.5,103.6 81.4,105.1 82.4,105.9 83.3,101.3 84.3,103.0 85.2,98.4 86.2,95.5 87.1,91.9 88.1,93.3 89.0,94.4 90.0,97.0 91.0,97.0 91.9,94.4 92.9,92.6 93.8,93.1 94.8,92.5 95.7,89.9 96.7,93.0 97.6,90.6 98.6,93.0 99.5,91.6 100.5,94.2 101.4,94.0 102.4,95.9 103.3,96.0 104.3,93.1 105.2,95.3 106.2,94.4 107.1,93.3 108.1,94.3 109.0,93.8 110.0,95.5 111.0,97.9 111.9,99.1 112.9,99.8 113.8,96.0 114.8,97.7 115.7,99.9 116.7,102.4 117.6,101.5 118.6,106.5 119.5,103.6 120.5,101.2 121.4,102.0 122.4,99.3 123.3,99.8 124.3,101.5 125.2,101.3 126.2,103.1 127.1,100.8 128.1,100.7 129.0,97.3 130.0,100.8 131.0,100.5 131.9,105.5 132.9,104.9 133.8,104.6 134.8,106.5 135.7,105.6 136.7,106.5 137.6,104.9 138.6,104.5 139.5,104.2 140.5,112.0 141.4,113.1 142.4,113.4 143.3,109.5 144.3,106.8 145.2,109.4 146.2,110.5 147.1,108.4 148.1,108.1 149.0,113.6 150.0,106.0 151.0,108.3 151.9,110.2 152.9,109.7 153.8,108.3 154.8,106.9 155.7,105.8 156.7,105.7 157.6,106.1 158.6,102.6 159.5,98.9 160.5,97.9 161.4,94.8 162.4,92.8 163.3,89.0 164.3,74.8 165.2,76.2 166.2,76.3 167.1,78.4 168.1,76.5 169.0,75.8 170.0,74.9 171.0,77.9 171.9,71.3 172.9,73.6 173.8,73.7 174.8,73.3 175.7,72.0 176.7,69.3 177.6,70.3 178.6,66.6 179.5,67.2 180.5,69.3 181.4,67.9 182.4,68.6 183.3,71.6 184.3,70.8 185.2,72.3 186.2,72.1 187.1,70.1 188.1,67.4 189.0,66.2 190.0,67.1 191.0,61.6 191.9,59.6 192.9,57.3 193.8,54.0 194.8,53.7 195.7,52.3 196.7,51.9 197.6,50.7 198.6,51.5 199.5,53.0 200.5,53.3 201.4,56.0 202.4,55.7 203.3,56.1 204.3,58.0 205.2,59.1 206.2,62.5 207.1,65.1 208.1,65.8 209.0,65.2 210.0,83.9 211.0,98.2 211.9,99.0 212.9,99.3 213.8,101.5 214.8,99.6 215.7,92.0 216.7,93.5 217.6,94.2 218.6,97.7 219.5,99.4 220.5,100.5 221.4,100.5 222.4,99.5 223.3,99.5 224.3,101.2 225.2,101.4 226.2,100.6 227.1,99.0 228.1,105.2 229.0,108.7 230.0,105.7 231.0,105.0 231.9,104.3 232.9,104.2 233.8,97.0 234.8,94.0 235.7,95.7 236.7,90.3 237.6,88.8 238.6,79.5 239.5,80.2 240.5,78.9 241.4,74.4 242.4,72.7 243.3,67.5 244.3,61.4 245.2,61.7 246.2,40.0 247.1,38.9 248.1,38.8 249.0,38.4 250.0,39.8 251.0,40.0 251.9,43.1 252.9,41.7 253.8,43.5 254.8,42.9 255.7,41.6 256.7,40.9 257.6,42.4 258.6,41.4 259.5,39.9 260.5,42.4 261.4,38.6 262.4,38.6 263.3,38.7 264.3,43.9 265.2,43.7 266.2,43.0 267.1,46.5 268.1,47.0 269.0,47.0 270.0,47.1 271.0,43.7 271.9,48.9 272.9,50.0 273.8,45.1 274.8,43.9 275.7,46.0 276.7,45.4 277.6,44.6 278.6,44.2 279.5,45.7 280.5,50.7 281.4,51.7 282.4,52.1 283.3,54.9 284.3,55.7 285.2,54.2 286.2,52.3 287.1,46.5 288.1,47.2 289.0,44.1 290.0,43.1 291.0,41.0 291.9,39.0 292.9,40.5 293.8,42.1 294.8,43.1 295.7,37.6 296.7,38.7 297.6,35.7 298.6,34.1 299.5,38.6 300.5,41.9 301.4,43.0 302.4,43.3 303.3,45.8 304.3,44.4 305.2,49.9 306.2,56.3 307.1,57.0 308.1,57.2 309.0,59.4 310.0,59.1 311.0,60.7 311.9,60.8 312.9,59.4 313.8,60.9 314.8,61.3 315.7,59.2 316.7,55.6 317.6,56.9 318.6,58.7 319.5,57.7 320.5,58.3 321.4,58.6 322.4,55.8 323.3,57.0 324.3,54.7 325.2,33.1 326.2,33.5 327.1,34.6 328.1,34.9 329.0,36.7 330.0,40.1 331.0,38.9 331.9,39.0 332.9,35.2 333.8,32.8 334.8,31.3 335.7,29.5 336.7,29.7 337.6,26.7 338.6,27.5 339.5,25.6 340.5,23.5 341.4,21.2 342.4,20.6 343.3,16.4 344.3,16.9 345.2,14.5 346.2,44.3 347.1,45.1 348.1,44.1 349.0,43.4 350.0,43.9 351.0,44.7 351.9,39.2 352.9,41.2 353.8,39.5 354.8,36.8 355.7,39.5 356.7,40.7 357.6,40.7 358.6,35.2 359.5,37.3 360.5,36.7 361.4,35.3 362.4,34.5 363.3,38.0 364.3,36.5 365.2,39.0 366.2,37.8 367.1,36.7 368.1,37.6 369.0,36.3 370.0,34.8 371.0,27.8 371.9,32.2 372.9,29.9 373.8,29.8 374.8,29.3 375.7,27.4 376.7,26.2 377.6,23.6 378.6,23.8 379.5,21.0 380.5,21.1 381.4,23.2 382.4,16.3 383.3,14.4 384.3,14.6 385.2,12.7 386.2,13.3 387.1,11.3 388.1,16.3 389.0,11.5 390.0,10.0" />
+        
+      </svg>
+      <div class="chart-meta">
+        <span>start -100.0</span>
+        <span>end 11498.4 pips</span>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="track-grid">
+  <div class="panel">
+    <h2>Backtest · 頻道排行</h2>
+    <table class="table compact">
+      <thead>
+        <tr>
+          <th>#</th><th>頻道</th><th>訊號</th><th>TP/SL</th><th>勝率</th><th>Pips</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="muted">1</td>
+          <td><strong>TWP VIP 🏆</strong></td>
+          <td>273</td>
+          <td><span class="pos">169</span> / <span class="neg">84</span></td>
+          <td>66.8%</td>
+          <td class="neg">
+            -77.3
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2</td>
+          <td><strong>TWP GOLD 📈</strong></td>
+          <td>105</td>
+          <td><span class="pos">62</span> / <span class="neg">35</span></td>
+          <td>63.9%</td>
+          <td class="pos">
+            +250.2
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">3</td>
+          <td><strong>GOLD Snipers</strong></td>
+          <td>405</td>
+          <td><span class="pos">322</span> / <span class="neg">52</span></td>
+          <td>86.1%</td>
+          <td class="pos">
+            +15226.9
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">4</td>
+          <td><strong>GARY GOLD TRADER</strong> <span class="tag">watch</span></td>
+          <td>898</td>
+          <td><span class="pos">388</span> / <span class="neg">428</span></td>
+          <td>47.5%</td>
+          <td class="pos">
+            +18727.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">7</td>
+          <td><strong>𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</strong></td>
+          <td>809</td>
+          <td><span class="pos">457</span> / <span class="neg">331</span></td>
+          <td>58.0%</td>
+          <td class="pos">
+            +239628.2
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">8</td>
+          <td><strong>SureShot GOLD</strong></td>
+          <td>369</td>
+          <td><span class="pos">106</span> / <span class="neg">251</span></td>
+          <td>29.7%</td>
+          <td class="pos">
+            +40939.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">9</td>
+          <td><strong>FX PROFIT SIGNAL (FREE)</strong></td>
+          <td>560</td>
+          <td><span class="pos">287</span> / <span class="neg">215</span></td>
+          <td>57.2%</td>
+          <td class="pos">
+            +2645.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">10</td>
+          <td><strong>TFXC PREMIUM</strong></td>
+          <td>2345</td>
+          <td><span class="pos">1859</span> / <span class="neg">350</span></td>
+          <td>84.2%</td>
+          <td class="neg">
+            -5937.2
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">11</td>
+          <td><strong>Sureshot FX 🎯</strong></td>
+          <td>321</td>
+          <td><span class="pos">77</span> / <span class="neg">200</span></td>
+          <td>27.8%</td>
+          <td class="pos">
+            +35222.1
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">12</td>
+          <td><strong>Market Makers</strong></td>
+          <td>444</td>
+          <td><span class="pos">245</span> / <span class="neg">110</span></td>
+          <td>69.0%</td>
+          <td class="neg">
+            -195.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">13</td>
+          <td><strong>Quartz Academy 💠</strong></td>
+          <td>697</td>
+          <td><span class="pos">376</span> / <span class="neg">262</span></td>
+          <td>58.9%</td>
+          <td class="pos">
+            +1730.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">14</td>
+          <td><strong>Octa Analytics</strong></td>
+          <td>164</td>
+          <td><span class="pos">83</span> / <span class="neg">79</span></td>
+          <td>51.2%</td>
+          <td class="pos">
+            +1185.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">15</td>
+          <td><strong>TFXC SIGNALS</strong></td>
+          <td>304</td>
+          <td><span class="pos">272</span> / <span class="neg">30</span></td>
+          <td>90.1%</td>
+          <td class="pos">
+            +1362.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">16</td>
+          <td><strong>TFXC SIGNALS UK 🇬🇧 🔥</strong></td>
+          <td>303</td>
+          <td><span class="pos">272</span> / <span class="neg">30</span></td>
+          <td>90.1%</td>
+          <td class="pos">
+            +1362.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">17</td>
+          <td><strong>AamirFx_Pro ( #Father_Of_Gold )</strong></td>
+          <td>134</td>
+          <td><span class="pos">7</span> / <span class="neg">15</span></td>
+          <td>31.8%</td>
+          <td class="pos">
+            +1733.6
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">18</td>
+          <td><strong>Trading Central FX | Forex Signals 🌍</strong></td>
+          <td>309</td>
+          <td><span class="pos">240</span> / <span class="neg">46</span></td>
+          <td>83.9%</td>
+          <td class="pos">
+            +4180.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">19</td>
+          <td><strong>School Of Trades</strong></td>
+          <td>227</td>
+          <td><span class="pos">137</span> / <span class="neg">53</span></td>
+          <td>72.1%</td>
+          <td class="pos">
+            +3395.6
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">22</td>
+          <td><strong>Ben, Gold Trader</strong></td>
+          <td>351</td>
+          <td><span class="pos">287</span> / <span class="neg">60</span></td>
+          <td>82.7%</td>
+          <td class="pos">
+            +3381.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">24</td>
+          <td><strong>GTMoFx 🤴🏽 (goldtradermo)</strong></td>
+          <td>387</td>
+          <td><span class="pos">274</span> / <span class="neg">96</span></td>
+          <td>74.1%</td>
+          <td class="neg">
+            -761.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">25</td>
+          <td><strong>GOLD SIGNALS SCALPING ® GSS</strong></td>
+          <td>228</td>
+          <td><span class="pos">219</span> / <span class="neg">8</span></td>
+          <td>96.5%</td>
+          <td class="pos">
+            +4920.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">26</td>
+          <td><strong>🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</strong></td>
+          <td>325</td>
+          <td><span class="pos">108</span> / <span class="neg">174</span></td>
+          <td>38.3%</td>
+          <td class="neg">
+            -5804.7
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">28</td>
+          <td><strong>Trade with Pat 🆓 (FRN)</strong></td>
+          <td>50</td>
+          <td><span class="pos">18</span> / <span class="neg">23</span></td>
+          <td>43.9%</td>
+          <td class="neg">
+            -367.8
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">29</td>
+          <td><strong>Liquidity Trading ™️</strong></td>
+          <td>39</td>
+          <td><span class="pos">32</span> / <span class="neg">7</span></td>
+          <td>82.1%</td>
+          <td class="pos">
+            +3956.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">31</td>
+          <td><strong>VANTAGE FOREX SIGNALS OFFICIAL</strong></td>
+          <td>1019</td>
+          <td><span class="pos">571</span> / <span class="neg">187</span></td>
+          <td>75.3%</td>
+          <td class="pos">
+            +9473.3
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">32</td>
+          <td><strong>🌐 𝗚𝗼𝗹𝗱 | fσrεx rεsεarch 💱⚜️</strong></td>
+          <td>39</td>
+          <td><span class="pos">21</span> / <span class="neg">16</span></td>
+          <td>56.8%</td>
+          <td class="pos">
+            +1261.9
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">36</td>
+          <td><strong>GFR ANALYSIS FREE</strong> <span class="tag">watch</span></td>
+          <td>1061</td>
+          <td><span class="pos">418</span> / <span class="neg">472</span></td>
+          <td>47.0%</td>
+          <td class="pos">
+            +22266.4
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">37</td>
+          <td><strong>Traders Gold Empire Forex</strong></td>
+          <td>725</td>
+          <td><span class="pos">368</span> / <span class="neg">258</span></td>
+          <td>58.8%</td>
+          <td class="neg">
+            -1138.8
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">38</td>
+          <td><strong>DEN GOLD MASTER</strong></td>
+          <td>671</td>
+          <td><span class="pos">361</span> / <span class="neg">123</span></td>
+          <td>74.6%</td>
+          <td class="pos">
+            +12926.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">39</td>
+          <td><strong>Gold Snipers Forex Free</strong></td>
+          <td>230</td>
+          <td><span class="pos">81</span> / <span class="neg">113</span></td>
+          <td>41.8%</td>
+          <td class="pos">
+            +2169.6
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">40</td>
+          <td><strong>Sureshot INDICES ⚡️</strong></td>
+          <td>319</td>
+          <td><span class="pos">86</span> / <span class="neg">232</span></td>
+          <td>27.0%</td>
+          <td class="pos">
+            +50733.9
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">44</td>
+          <td><strong>✨WFR PREMIUM ( lifetime + Monthly)✨</strong></td>
+          <td>633</td>
+          <td><span class="pos">192</span> / <span class="neg">369</span></td>
+          <td>34.2%</td>
+          <td class="neg">
+            -9363.3
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">45</td>
+          <td><strong>Turbo Traders International 🌎</strong></td>
+          <td>21</td>
+          <td><span class="pos">20</span> / <span class="neg">1</span></td>
+          <td>95.2%</td>
+          <td class="pos">
+            +540.0
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <h2>Live demo · 頻道排行</h2>
+    <table class="table compact">
+      <thead>
+        <tr>
+          <th>#</th><th>頻道</th><th>訊號</th><th>TP/SL</th><th>勝率</th><th>Pips</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="muted">1</td>
+          <td><strong>TWP VIP 🏆</strong></td>
+          <td>44</td>
+          <td><span class="pos">17</span> / <span class="neg">25</span></td>
+          <td>40.5%</td>
+          <td class="neg">
+            -228.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2</td>
+          <td><strong>TWP GOLD 📈</strong></td>
+          <td>20</td>
+          <td><span class="pos">13</span> / <span class="neg">6</span></td>
+          <td>68.4%</td>
+          <td class="pos">
+            +32.8
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">3</td>
+          <td><strong>GOLD Snipers</strong></td>
+          <td>47</td>
+          <td><span class="pos">34</span> / <span class="neg">10</span></td>
+          <td>77.3%</td>
+          <td class="pos">
+            +770.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">4</td>
+          <td><strong>GARY GOLD TRADER</strong></td>
+          <td>133</td>
+          <td><span class="pos">65</span> / <span class="neg">61</span></td>
+          <td>51.6%</td>
+          <td class="neg">
+            -1170.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">7</td>
+          <td><strong>𝐅𝐨𝐫𝐞𝐱 𝐀𝐝𝐯𝐚𝐧𝐜𝐞 🎖</strong></td>
+          <td>93</td>
+          <td><span class="pos">52</span> / <span class="neg">37</span></td>
+          <td>58.4%</td>
+          <td class="pos">
+            +2625.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">8</td>
+          <td><strong>SureShot GOLD</strong></td>
+          <td>52</td>
+          <td><span class="pos">14</span> / <span class="neg">38</span></td>
+          <td>26.9%</td>
+          <td class="neg">
+            -3200.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">9</td>
+          <td><strong>FX PROFIT SIGNAL (FREE)</strong></td>
+          <td>77</td>
+          <td><span class="pos">46</span> / <span class="neg">23</span></td>
+          <td>66.7%</td>
+          <td class="pos">
+            +696.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">10</td>
+          <td><strong>TFXC PREMIUM</strong></td>
+          <td>328</td>
+          <td><span class="pos">248</span> / <span class="neg">48</span></td>
+          <td>83.8%</td>
+          <td class="neg">
+            -1412.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">11</td>
+          <td><strong>Sureshot FX 🎯</strong></td>
+          <td>44</td>
+          <td><span class="pos">10</span> / <span class="neg">33</span></td>
+          <td>23.3%</td>
+          <td class="neg">
+            -3000.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">12</td>
+          <td><strong>Market Makers</strong></td>
+          <td>69</td>
+          <td><span class="pos">45</span> / <span class="neg">14</span></td>
+          <td>76.3%</td>
+          <td class="pos">
+            +719.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">13</td>
+          <td><strong>Quartz Academy 💠</strong></td>
+          <td>84</td>
+          <td><span class="pos">52</span> / <span class="neg">31</span></td>
+          <td>62.7%</td>
+          <td class="neg">
+            -500.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">14</td>
+          <td><strong>Octa Analytics</strong></td>
+          <td>40</td>
+          <td><span class="pos">27</span> / <span class="neg">13</span></td>
+          <td>67.5%</td>
+          <td class="pos">
+            +5280.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">15</td>
+          <td><strong>TFXC SIGNALS</strong></td>
+          <td>46</td>
+          <td><span class="pos">42</span> / <span class="neg">4</span></td>
+          <td>91.3%</td>
+          <td class="pos">
+            +320.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">16</td>
+          <td><strong>TFXC SIGNALS UK 🇬🇧 🔥</strong></td>
+          <td>46</td>
+          <td><span class="pos">42</span> / <span class="neg">4</span></td>
+          <td>91.3%</td>
+          <td class="pos">
+            +320.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">17</td>
+          <td><strong>AamirFx_Pro ( #Father_Of_Gold )</strong></td>
+          <td>16</td>
+          <td><span class="pos">2</span> / <span class="neg">9</span></td>
+          <td>18.2%</td>
+          <td class="neg">
+            -1090.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">18</td>
+          <td><strong>Trading Central FX | Forex Signals 🌍</strong></td>
+          <td>16</td>
+          <td><span class="pos">5</span> / <span class="neg">11</span></td>
+          <td>31.2%</td>
+          <td class="neg">
+            -150.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">19</td>
+          <td><strong>School Of Trades</strong></td>
+          <td>44</td>
+          <td><span class="pos">26</span> / <span class="neg">14</span></td>
+          <td>65.0%</td>
+          <td class="pos">
+            +20.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">22</td>
+          <td><strong>Ben, Gold Trader</strong></td>
+          <td>55</td>
+          <td><span class="pos">41</span> / <span class="neg">14</span></td>
+          <td>74.5%</td>
+          <td class="neg">
+            -353.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">24</td>
+          <td><strong>GTMoFx 🤴🏽 (goldtradermo)</strong></td>
+          <td>70</td>
+          <td><span class="pos">50</span> / <span class="neg">18</span></td>
+          <td>73.5%</td>
+          <td class="neg">
+            -358.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">25</td>
+          <td><strong>GOLD SIGNALS SCALPING ® GSS</strong></td>
+          <td>63</td>
+          <td><span class="pos">54</span> / <span class="neg">9</span></td>
+          <td>85.7%</td>
+          <td class="neg">
+            -290.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">26</td>
+          <td><strong>🌐 wσrld fσrєх rєѕєαrch 💱 ⚜</strong></td>
+          <td>40</td>
+          <td><span class="pos">15</span> / <span class="neg">16</span></td>
+          <td>48.4%</td>
+          <td class="pos">
+            +1210.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">28</td>
+          <td><strong>Trade with Pat 🆓 (FRN)</strong></td>
+          <td>5</td>
+          <td><span class="pos">2</span> / <span class="neg">3</span></td>
+          <td>40.0%</td>
+          <td class="neg">
+            -13.8
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">29</td>
+          <td><strong>Liquidity Trading ™️</strong></td>
+          <td>64</td>
+          <td><span class="pos">52</span> / <span class="neg">10</span></td>
+          <td>83.9%</td>
+          <td class="pos">
+            +5946.4
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">31</td>
+          <td><strong>VANTAGE FOREX SIGNALS OFFICIAL</strong></td>
+          <td>62</td>
+          <td><span class="pos">50</span> / <span class="neg">9</span></td>
+          <td>84.7%</td>
+          <td class="pos">
+            +417.2
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">32</td>
+          <td><strong>🌐 𝗚𝗼𝗹𝗱 | fσrεx rεsεarch 💱⚜️</strong></td>
+          <td>0</td>
+          <td><span class="pos">0</span> / <span class="neg">0</span></td>
+          <td>—</td>
+          <td class="pos">
+            —
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">36</td>
+          <td><strong>GFR ANALYSIS FREE</strong></td>
+          <td>200</td>
+          <td><span class="pos">68</span> / <span class="neg">105</span></td>
+          <td>39.3%</td>
+          <td class="pos">
+            +1920.1
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">37</td>
+          <td><strong>Traders Gold Empire Forex</strong></td>
+          <td>38</td>
+          <td><span class="pos">18</span> / <span class="neg">16</span></td>
+          <td>52.9%</td>
+          <td class="pos">
+            +1399.6
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">38</td>
+          <td><strong>DEN GOLD MASTER</strong></td>
+          <td>78</td>
+          <td><span class="pos">64</span> / <span class="neg">11</span></td>
+          <td>85.3%</td>
+          <td class="pos">
+            +2085.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">39</td>
+          <td><strong>Gold Snipers Forex Free</strong></td>
+          <td>30</td>
+          <td><span class="pos">14</span> / <span class="neg">15</span></td>
+          <td>48.3%</td>
+          <td class="pos">
+            +26.1
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">40</td>
+          <td><strong>Sureshot INDICES ⚡️</strong></td>
+          <td>42</td>
+          <td><span class="pos">7</span> / <span class="neg">35</span></td>
+          <td>16.7%</td>
+          <td class="neg">
+            -3930.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">44</td>
+          <td><strong>✨WFR PREMIUM ( lifetime + Monthly)✨</strong></td>
+          <td>88</td>
+          <td><span class="pos">31</span> / <span class="neg">51</span></td>
+          <td>37.8%</td>
+          <td class="pos">
+            +3156.0
+          </td>
+        </tr>
+        
+        <tr>
+          <td class="muted">45</td>
+          <td><strong>Turbo Traders International 🌎</strong></td>
+          <td>16</td>
+          <td><span class="pos">14</span> / <span class="neg">2</span></td>
+          <td>87.5%</td>
+          <td class="pos">
+            +250.0
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="track-grid">
+  <div class="panel">
+    <h2>Backtest · 最近訊號</h2>
+    <table class="table compact">
+      <thead>
+        <tr><th>時間</th><th>頻道</th><th>Symbol</th><th>Side</th><th>Status</th><th>Pips</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="muted">2026-09-29 19:23:36</td>
+          <td>Turbo Traders International 🌎</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+50.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-09-29 14:24:52</td>
+          <td>✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+          <td>NZDUSD</td>
+          <td class="pos">BUY</td>
+          <td><span class="status hit_sl">hit_sl</span></td>
+          <td>-8.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-09-29 01:39:10</td>
+          <td>✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_sl">hit_sl</span></td>
+          <td>-130.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-09-28 23:16:14</td>
+          <td>✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+          <td>AUDUSD</td>
+          <td class="pos">BUY</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+18.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-09-28 22:05:32</td>
+          <td>✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+          <td>EURUSD</td>
+          <td class="pos">BUY</td>
+          <td><span class="status hit_sl">hit_sl</span></td>
+          <td>-6.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-09-28 22:01:39</td>
+          <td>✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+          <td>GBPCHF</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_sl">hit_sl</span></td>
+          <td>-29.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-09-28 21:47:22</td>
+          <td>✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+          <td>XAUUSD</td>
+          <td class="pos">BUY</td>
+          <td><span class="status hit_sl">hit_sl</span></td>
+          <td>-65.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-09-28 17:25:43</td>
+          <td>✨WFR PREMIUM ( lifetime + Monthly)✨</td>
+          <td>XAUUSD</td>
+          <td class="pos">BUY</td>
+          <td><span class="status hit_sl">hit_sl</span></td>
+          <td>-50.0</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <div class="panel">
+    <h2>Live demo · 最近訊號</h2>
+    <table class="table compact">
+      <thead>
+        <tr><th>時間</th><th>頻道</th><th>Symbol</th><th>Side</th><th>Status</th><th>Pips</th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td class="muted">2026-11-21 22:02:22</td>
+          <td>TFXC PREMIUM</td>
+          <td>BTCUSD</td>
+          <td class="pos">BUY</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+77.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-11-21 01:54:49</td>
+          <td>DEN GOLD MASTER</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+40.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-11-21 00:16:56</td>
+          <td>TWP GOLD 📈</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status pending">pending</span></td>
+          <td>—</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-11-20 23:20:53</td>
+          <td>TFXC PREMIUM</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+18.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-11-20 23:19:58</td>
+          <td>TFXC PREMIUM</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+18.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-11-20 23:01:09</td>
+          <td>TFXC PREMIUM</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+21.0</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-11-20 22:50:45</td>
+          <td>Liquidity Trading ™️</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+81.3</td>
+        </tr>
+        
+        <tr>
+          <td class="muted">2026-11-20 21:56:05</td>
+          <td>Traders Gold Empire Forex</td>
+          <td>XAUUSD</td>
+          <td class="neg">SELL</td>
+          <td><span class="status hit_tp">hit_tp</span></td>
+          <td>+190.0</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+
+  </main>
+  <footer class="footer">
+    Phase 1 · Backtest ≠ Live demo · 唔會混統計 · SQLite · GitHub Pages snapshot · paper only · 無實盤下單
+  </footer>
+  <script src="static/sort-table.js" defer></script>
+<!-- algowise-theme -->
+<script src="static/algowise-theme.js" defer></script>
+</body>
+</html>
